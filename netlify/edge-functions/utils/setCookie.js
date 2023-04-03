@@ -2,10 +2,10 @@ export function setCookie(context, name, value, expiration) {
     context.cookies.set({
         name,
         value,
-        path: "/",
+        path: '/',
         httpOnly: true,
         secure: true,
-        sameSite: "Lax",
+        sameSite: 'Lax',
         expires: expiration,
     });
 }

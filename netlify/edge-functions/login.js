@@ -1,13 +1,13 @@
-import { createClient } from "./utils/_deps.js";
+import { createClient } from './utils/_deps.js';
 
-import { SUPABASE_URL, SUPABASE_KEY } from "./utils/env.js";
-import { setCookie } from "./utils/setCookie.js";
+import { SUPABASE_URL, SUPABASE_KEY } from './utils/env.js';
+import { setCookie } from './utils/setCookie.js';
 
 export default async (request, context) => {
     const url = new URL(request.url);
-    const accessToken = url.searchParams.get("access_token");
-    const expiresAt = url.searchParams.get("expires_at");
-    const redirect = url.searchParams.get("redirect");
+    const accessToken = url.searchParams.get('access_token');
+    const expiresAt = url.searchParams.get('expires_at');
+    const redirect = url.searchParams.get('redirect');
     
     // Save to cookie, redirect back to form
     if (accessToken && expiresAt) {
@@ -30,7 +30,7 @@ export default async (request, context) => {
         if (!authError) {
             setCookie(
                 context,
-                "_access_token",
+                '_access_token',
                 accessToken,
                 new Date(expiresAt * 1000)
                 );
@@ -39,7 +39,7 @@ export default async (request, context) => {
                     status: 302,
                     headers: {
                         location: redirect,
-                        "Cache-Control": "no-cache",
+                        'Cache-Control': 'no-cache',
                     },
                 });
             } else {
@@ -48,8 +48,8 @@ export default async (request, context) => {
                 return new Response(null, {
                     status: 302,
                     headers: {
-                        location: "/?unauthorized",
-                        "Cache-Control": "no-cache",
+                        location: '/?unauthorized',
+                        'Cache-Control': 'no-cache',
                     },
                 });
             }
@@ -57,8 +57,8 @@ export default async (request, context) => {
             return new Response(null, {
                 status: 302,
                 headers: {
-                    location: "/?noop",
-                    "Cache-Control": "no-cache",
+                    location: '/?noop',
+                    'Cache-Control': 'no-cache',
                 },
             });
         }

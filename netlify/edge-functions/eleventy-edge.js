@@ -1,14 +1,14 @@
 import {
     EleventyEdge,
     precompiledAppData,
-} from "./_generated/eleventy-edge-app.js";
+} from './_generated/eleventy-edge-app.js';
 
-import { createClient } from "./utils/_deps.js";
+import { createClient } from './utils/_deps.js';
 
-import { SUPABASE_URL, SUPABASE_KEY } from "./utils/env.js";
+import { SUPABASE_URL, SUPABASE_KEY } from './utils/env.js';
 
 export default async (request, context) => {
-    const accessToken = context.cookies.get("_access_token");
+    const accessToken = context.cookies.get('_access_token');
     let isUser = false;
     
     try {
@@ -35,11 +35,11 @@ export default async (request, context) => {
             }
         }
     } catch (e) {
-        console.log("ERROR", { e });
+        console.log('ERROR', { e });
     }
     
     try {
-        let edge = new EleventyEdge("edge", {
+        let edge = new EleventyEdge('edge', {
             request,
             context,
             precompiled: precompiledAppData,
@@ -47,12 +47,12 @@ export default async (request, context) => {
         });
         
         edge.config((eleventyConfig) => {
-            eleventyConfig.addGlobalData("isUser", isUser);
+            eleventyConfig.addGlobalData('isUser', isUser);
         });
         
         return await edge.handleResponse();
     } catch (e) {
-        console.log("ERROR", { e });
+        console.log('ERROR', { e });
         return context.next(e);
     }
 };
