@@ -6,11 +6,21 @@
     "scripts": {
         "watch:sass": "sass  --no-source-map --watch src/sass:dist/css",
         "watch:eleventy": "eleventy --serve",
-        "build:sass": "sass  --no-source-map src/sass:dist/css",
-        "build:eleventy": "eleventy",
+        "prodbuild:sass": "sass  --no-source-map src/sass:dist/css",
+        "prodbuild:eleventy": "eleventy",
         "postbuild": "lightningcss --minify dist/css/style.css -o dist/css/style.min.css",
-        "start": "npm-run-all build:sass --parallel watch:*",
-        "build": "npm-run-all build:sass build:eleventy"
+        "xstart": "npm-run-all build:sass --parallel watch:*",
+        "prodbuild": "npm-run-all build:sass build:eleventy",
+
+        "start": "npm-run-all dev:css --parallel dev:11ty bsync",
+        "dev:11ty": "cross-env ELEVENTY_ENV=development eleventy --watch",
+        "dev:css": "postcss src/assets/css/tailwind.css --o dist/assets/css/style.css --config ./postcss.config.js --watch",
+        "dev:bsync": "browser-sync start --server dist --files dist --port 54321 --no-notify --no-open",
+        "build:11ty": "cross-env NODE_ENV=production eleventy",
+        "build:css": "cross-env NODE_ENV=production tailwindcss -i src/assets/css/tailwind.css -o dist/assets/css/style.css",
+        "build": "npm-run-all build:css build:11ty",
+        "clean": "rimraf dist/*",
+        "debug": "set DEBUG=* & 11ty"
     },
     "repository": {
         "type": "git",
@@ -18,11 +28,24 @@
     },
     "author": "5t3ph",
     "license": "ISC",
-    "dependencies": {
+    "devDependencies": {
         "@11ty/eleventy": "^2.0.1",
+        "autoprefixer": "^10.4.14",
+        "browser-sync": "^2.29.1",
+        "cross-env": "^7.0.3",
+        "html-minifier": "^4.0.0",
+        "js-yaml": "^4.1.0",
         "lightningcss-cli": "^1.19.0",
         "npm-run-all": "^4.1.5",
-        "sass": "^1.60.0"
+        "postcss": "^8.4.21",
+        "postcss-cli": "^10.1.0",
+        "postcss-import": "^15.1.0",
+        "rimraf": "^4.4.1",
+        "tailwindcss": "^3.3.1",
+        "tailwindcss-logical": "^3.0.0"
+    },
+    "dependencies": {
+        "alpinejs": "^3.12.0"
     },
     "browserslist": [
         "> 0.25%",
