@@ -1,18 +1,19 @@
-[dev]
-command = "npm start"
 
 [build]
-publish = "public"
-command = "npm run build"
+  command = "npm run build"
+  publish = "public"
+
+[dev]
+  command = "npm start"
 
 [[edge_functions]]
-path = "/access/*"
-function = "login"
+  path = "/access/*"
+  function = "login"
 
 [[edge_functions]]
-path = "/signout"
-function = "signout"
+  path = "/signout"
+  function = "signout"
 
 [[edge_functions]]
-path = "/*"
-function = "eleventy-edge"
+  path = "/*"
+  function = "eleventy-edge"
