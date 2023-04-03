@@ -4,11 +4,11 @@
     "description": "An Eleventy theme for offering premium content to members. Requires Supabase and Netlify accounts.",
     "main": "index.html",
     "scripts": {
-        "watch:sass": "sass  --no-source-map --watch src/sass:public/css",
+        "watch:sass": "sass  --no-source-map --watch src/sass:dist/css",
         "watch:eleventy": "eleventy --serve",
-        "build:sass": "sass  --no-source-map src/sass:public/css",
+        "build:sass": "sass  --no-source-map src/sass:dist/css",
         "build:eleventy": "eleventy",
-        "postbuild": "lightningcss --minify public/css/style.css -o public/css/style.min.css",
+        "postbuild": "lightningcss --minify dist/css/style.css -o dist/css/style.min.css",
         "start": "npm-run-all build:sass --parallel watch:*",
         "build": "npm-run-all build:sass build:eleventy"
     },

@@ -2,11 +2,14 @@
 node_modules
 
 # build artifacts
-public
+dist
 
 # secrets and errors
 .env
 .log
+.vscode
+package-lock.json
+public
 
 # macOS related files
 .DS_Store
