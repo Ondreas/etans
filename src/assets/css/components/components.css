@@ -1,0 +1,76 @@
+/* ================================================= */
+/* Elements | Tailwind CSS                           */
+/* ================================================= */
+@import "../../../views/_includes/elements/button/button.css";
+@import "../../../views/_includes/elements/input-numeric/input-numeric.css";
+@import "../../../views/_includes/elements/tooltip/tooltip.css";
+@import "../../../views/_includes/elements/toggle/toggle.css";
+/* @import "../../../views/_includes/elements/breadcrumbs/tw-breadcrumbs.css"; */
+
+/* ================================================= */
+/* Elements | Vanilla CSS                            */
+/* ================================================= */
+@import "../../../views/_includes/elements/breadcrumbs/breadcrumbs.css";
+
+@layer components {
+    .nav-link {
+        @apply relative inline-flex items-center justify-center;
+        @apply w-full px-4 py-3 transition-colors duration-300 ease-in;
+        @apply focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-700;
+        @apply focus:text-gray-900; /* focus:bg-gray-200; */
+        @apply sm:w-auto;
+    }
+    .nav-link span {
+        @apply border-b-2 border-transparent;
+    }
+    .is-current {
+        @apply text-black;
+    }
+    .is-current span {
+        @apply border-gray-800;
+    }
+    @screen sm {
+        [data-lang] li:not(:first-child)::before {
+            content: "\00007C";
+        }
+    }
+    [data-lang] [aria-current] {
+        @apply hidden;
+    }
+    [hreflang] {
+        @apply mouse:hover:text-black;
+    }
+    
+
+    /*
+    ** =========================================================
+    ** @media | pointer: mouse (desktop)
+    ** =========================================================
+    */
+    @media (pointer: fine) {
+
+        .card-details {
+            @apply opacity-0 absolute inset-0 flex flex-col items-center justify-center;
+            @apply w-full h-full text-gray-50 bg-gray-900 bg-opacity-80;
+            @apply transition-all duration-300 ease-in-out group-hover:opacity-100;
+        }
+
+        .card-title {
+            @apply leading-8;
+        }
+    }
+    /*
+    ** =========================================================
+    ** @media | pointer: touch (mobile/tablet)
+    ** =========================================================
+    */
+    @media (pointer: coarse) {
+        .card-details {
+            @apply w-full px-4 pt-4 text-center;
+        }
+
+        .card-title {
+            @apply leading-4;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+/* ------------------------------------------------- */
+/* Elements                                          */
+/* ------------------------------------------------- */
+/*
+@import "../../../views/_includes/elements/button/_root.css";
+@import "../../../views/_includes/elements/input-numeric/_root.css";
+@import "../../../views/_includes/elements/toggle/_root.css";
+@import "../../../views/_includes/elements/breadcrumbs/_root.css";
+*/
+
+/* ------------------------------------------------- */
+/* Global                                            */
+/* ------------------------------------------------- */
+@layer base {
+    :root {
+        --tw-ring-color: rgb(59 130 246 / 0.5);
+        --touch-size: theme(spacing.11);
+    }
+}
+
